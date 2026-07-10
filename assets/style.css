@@ -203,7 +203,7 @@ table.spec td:first-child{ color: var(--muted); font-family: var(--font-mono); f
 /* merchant contact card */
 .contact-row{ display:flex; justify-content:space-between; padding: 12px 0; border-top: 1px solid var(--line); font-size:14px; }
 .contact-row:first-child{ border-top:none; }
-.contact-row span:first-child{ color: var(--muted); font-family: var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+.contact-row span:first-child{ color: var(--muted); font-family: var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; margin-right: 15px; }
 
 /* dispense animation (signature element) */
 .dispenser{ display:flex; justify-content:center; padding: 10px 0; }
