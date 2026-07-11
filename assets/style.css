@@ -203,7 +203,35 @@ table.spec td:first-child{ color: var(--muted); font-family: var(--font-mono); f
 /* merchant contact card */
 .contact-row{ display:flex; justify-content:space-between; padding: 12px 0; border-top: 1px solid var(--line); font-size:14px; }
 .contact-row:first-child{ border-top:none; }
-.contact-row span:first-child{ color: var(--muted); font-family: var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; margin-right: 15px; }
+.contact-row span:first-child{ color: var(--muted); font-family: var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+
+/* founder / team cards (contact page) */
+.team-grid{ display:grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.founder{
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 0;
+  overflow: hidden;
+}
+.founder .photo{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display:block;
+}
+.founder .info{ padding: 16px; }
+.founder .name{ font-family: var(--font-display); font-size: 16px; font-weight:700; }
+.founder .role{ font-family: var(--font-mono); font-size: 11px; text-transform:uppercase; letter-spacing:0.06em; color: var(--steel); margin-top: 4px; }
+
+.info-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.info-card .icon{ width:20px; height:20px; margin-bottom:12px; }
+
+@media (max-width: 900px){
+  .team-grid{ grid-template-columns: repeat(2, 1fr); }
+  .info-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 480px){
+  .team-grid{ grid-template-columns: 1fr; }
+}
 
 /* dispense animation (signature element) */
 .dispenser{ display:flex; justify-content:center; padding: 10px 0; }
