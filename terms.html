@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
 <title>Terms &amp; Conditions | BuildX</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Terms and conditions for the BuildX website and NutriVend machines.">
+<link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><span class="mark"></span>BUILDX</a>
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="BuildX"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
     <nav class="nav">
       <a href="nutrivend/index.html">NutriVend</a>
       <a href="contact.html">Contact</a>
@@ -24,21 +28,16 @@
 </header>
 
 <section class="section">
-  <div class="wrap legal" style="max-width:720px;">
+  <div class="wrap legal reveal" style="max-width:760px;">
     <div class="eyebrow">Legal</div>
-    <h1 style="font-size:32px;">Terms &amp; Conditions</h1>
-    <p class="updated" style="margin-top:10px;">Last updated: July 2026</p>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="updated">Last updated: July 2026</p>
 
     <h2>1. About this site</h2>
-    <p>This website is operated by BuildX ("BuildX", "we", "us"). BuildX designs and manufactures unattended
-      vending machines, including the NutriVend protein shake dispenser. These Terms apply to your use of this
-      website and to every NutriVend machine installation listed on it, at <span class="mono">buildx.in/nutrivend/&lt;machine ID&gt;</span>.</p>
+    <p>This website is operated by BuildX ("BuildX", "we", "us"). BuildX designs and manufactures unattended vending machines, including the NutriVend protein shake dispenser. These Terms apply to your use of this website and to every NutriVend machine installation listed on it, at <span class="mono">buildx.in/nutrivend/&lt;machine ID&gt;</span>.</p>
 
     <h2>2. Who you're paying</h2>
-    <p>Each NutriVend machine is independently owned and operated by the individual or gym listed on that
-      machine's page. When you pay at a machine, you are paying that operator directly for the shake dispensed —
-      not BuildX. BuildX manufactures and sells the hardware and has no role in collecting, holding, or processing
-      any payment made at a machine.</p>
+    <p>Each NutriVend machine is independently owned and operated by the individual or gym listed on that machine's page. When you pay at a machine, you are paying that operator directly for the shake dispensed — not BuildX. BuildX manufactures and sells the hardware and has no role in collecting, holding, or processing any payment made at a machine.</p>
 
     <h2>3. Using a machine</h2>
     <ul>
@@ -48,21 +47,16 @@
     </ul>
 
     <h2>4. Product information</h2>
-    <p>Product descriptions, pricing, and flavors shown on a machine's page reflect that specific installation and
-      may vary between machines and locations.</p>
+    <p>Product descriptions, pricing, and flavors shown on a machine's page reflect that specific installation and may vary between machines and locations.</p>
 
     <h2>5. Limitation of liability</h2>
-    <p>BuildX is not responsible for the operation, hygiene, ingredient quality, or customer service of any
-      individual machine — these are the responsibility of the operator listed on that machine's page. This
-      website provides information only and does not process any transactions itself.</p>
+    <p>BuildX is not responsible for the operation, hygiene, ingredient quality, or customer service of any individual machine — these are the responsibility of the operator listed on that machine's page. This website provides information only and does not process any transactions itself.</p>
 
     <h2>6. Changes to these terms</h2>
-    <p>We may update these Terms from time to time. Continued use of this site or any NutriVend machine after an
-      update means you accept the revised Terms.</p>
+    <p>We may update these Terms from time to time. Continued use of this site or any NutriVend machine after an update means you accept the revised Terms.</p>
 
     <h2>7. Contact</h2>
-    <p>Questions about these Terms: <a href="mailto:hello@buildx.in" style="text-decoration:underline;">hello@buildx.in</a>.
-      For questions about a specific shake or payment, contact the operator listed on that machine's page.</p>
+    <p>Questions about these Terms: <a href="mailto:hello@buildx.in">hello@buildx.in</a>. For questions about a specific shake or payment, contact the operator listed on that machine's page.</p>
   </div>
 </section>
 
@@ -79,5 +73,6 @@
   </div>
 </footer>
 
+<script src="assets/site.js"></script>
 </body>
 </html>
