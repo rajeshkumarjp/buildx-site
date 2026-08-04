@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Iron House Fitness — Merchant Partner</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  .merchant-header {
+    text-align: center;
+    padding: 64px 0 32px;
+  }
+  .merchant-logo {
+    width: 80px;
+    height: 80px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .merchant-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  .policy-section {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">
+      <img src="../../assets/logo.png" alt="BuildX">
+    </a>
+    <div class="brand" style="margin-left: auto;">
+      <span style="opacity: 0.6; font-weight: 400; font-size: 13px;">Powered by BuildX</span>
+    </div>
+  </div>
+</header>
+
+<section class="section dark" style="padding-top: 60px;">
+  <div class="wrap reveal in">
+    
+    <div class="merchant-header">
+      <div class="merchant-logo">IH</div>
+      <h1>Iron House Fitness</h1>
+      <p class="lede" style="margin: 16px auto 0;">Old school bodybuilding and strength training facility.</p>
+    </div>
+
+    <div class="grid cols-2" style="margin-top: 40px; margin-bottom: 40px;">
+      <div class="card bracket">
+        <div class="eyebrow">Contact & Location</div>
+        <h3 style="margin-bottom: 12px; margin-top: 8px;">Get in touch</h3>
+        <p class="lede" style="font-size: 15px; margin-bottom: 8px; color: var(--text);"><strong>Address:</strong><br><span style="color: var(--text-muted);">789 Heavy Lift Blvd, Iron Town, IT 54321</span></p>
+        <p class="lede" style="font-size: 15px; margin-bottom: 8px; color: var(--text);"><strong>Email:</strong><br><a href="mailto:contact@ironhouse.com" style="color: var(--accent);">contact@ironhouse.com</a></p>
+        <p class="lede" style="font-size: 15px; color: var(--text);"><strong>Phone:</strong><br><span style="color: var(--text-muted);">(555) 222-3333</span></p>
+      </div>
+      <div class="card bracket">
+        <div class="eyebrow">About Us</div>
+        <h3 style="margin-bottom: 12px; margin-top: 8px;">Who we are</h3>
+        <p class="lede" style="font-size: 15px;">Iron House Fitness brings back the golden era of bodybuilding with modern amenities. We've partnered with BuildX to provide instant recovery nutrition on-site.</p>
+        
+        <div class="eyebrow" style="margin-top: 24px;">Products / Services</div>
+        <ul style="color: var(--text-muted); font-size: 15px; padding-left: 20px; margin: 8px 0 0;">
+          <li>NutriVend Shake Bar</li>\n          <li>Powerlifting Equipment</li>\n          <li>Cardio Deck</li>\n          <li>Locker Rooms</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="merchant-content legal">
+      <h2 style="margin-top: 0;">Policies & Terms</h2>
+      
+      <div class="policy-section" style="margin-top: 32px; padding-top: 0; border: none;">
+        <h3>Privacy Policy</h3>
+        <p>Iron House Fitness collects only the data necessary to provide a seamless payment experience at our vending machines. All transactions are securely encrypted.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Terms & Conditions</h3>
+        <p>Access to NutriVend machines is available to all members. Ensure your cup is placed correctly before initiating payment.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>Refund Policy</h3>
+        <p>Refunds for failed dispenses are processed automatically if the machine detects a fault. If a manual refund is needed, please notify staff within 24 hours.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="mono">© 2026 Iron House Fitness. Powered by BuildX.</span>
+  </div>
+</footer>
+
+<script>
+  // Simple reveal animation
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+  });
+</script>
+</body>
+</html>
