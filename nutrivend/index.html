@@ -14,35 +14,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Oxanium:wght@700;800&display=swap" rel="stylesheet">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          bg:       '#0f0d0b',
-          surface:  '#181513',
-          surface2: '#221e1b',
-          border:   '#2b2622',
-          brand:    '#f97316',
-          brandHi:  '#fb923c',
-          muted:    '#a8a29e',
-        },
-        fontFamily: {
-          display: ['Oswald','Bebas Neue','sans-serif'],
-          sans:    ['Inter','ui-sans-serif','system-ui','sans-serif'],
-          logo:    ['Oxanium', 'sans-serif'],
-        },
-        boxShadow: {
-          glow: '0 0 40px -8px rgba(249,115,22,.5), 0 0 80px -20px rgba(249,115,22,.3)',
-        },
-      }
-    }
-  }
-</script>
+<link rel="stylesheet" href="asset/styles.css">
 
 <style>
   html{scroll-behavior:smooth}
+  html,body{max-width:100%;overflow-x:hidden}
   body{background:#0f0d0b;color:#fafaf9;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   h1,h2,h3,h4{font-family:'Oswald',sans-serif;letter-spacing:-0.01em}
   .text-gradient-orange{background:linear-gradient(135deg,#fdba74,#ea580c);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -50,10 +26,58 @@
   .glow{box-shadow:0 0 40px -8px rgba(249,115,22,.5),0 0 80px -20px rgba(249,115,22,.3)}
   .radial-hero{background:radial-gradient(60% 50% at 80% 40%,rgba(249,115,22,.25),transparent 70%),radial-gradient(50% 50% at 10% 90%,rgba(249,115,22,.15),transparent 70%)}
   .radial-survey{background:radial-gradient(60% 60% at 50% 50%,rgba(249,115,22,.25),transparent 70%)}
-  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-0.125em}
+  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-0.125em;flex-shrink:0}
   img{max-width:100%;height:auto;display:block}
-  .btn-full-mobile{display:inline-flex;width:100%;justify-content:center}
+  .btn-full-mobile{display:inline-flex;width:100%;justify-content:center;min-height:48px}
   .text-mobile-lg{font-size:1rem;line-height:1.75;}
+
+  /* Extra hardening for very small phones (iPhone SE / older Android, ~320-380px) */
+  @media (max-width:380px){
+    h1{font-size:1.75rem !important}
+    h2{font-size:1.5rem !important}
+    .font-logo{font-size:1.25rem !important}
+  }
+
+  /* ============ Book Appointment form ============ */
+  .field{margin-bottom:16px}
+  .form-input{
+    width:100%;
+    background:#181513;
+    border:1.5px solid #2b2622;
+    border-radius:.5rem;
+    padding:12px 14px;
+    font-size:.9rem;
+    color:#fafaf9;
+    font-family:'Inter',sans-serif;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .form-input::placeholder{color:#a8a29e}
+  .form-input:focus{
+    outline:none;
+    border-color:#f97316;
+    box-shadow:0 0 0 3px rgba(249,115,22,.18);
+  }
+  .form-input.invalid{border-color:#ef4444}
+  select.form-input{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a8a29e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:36px}
+  .field-error{display:block;min-height:1.1em;color:#ef4444;font-size:.78rem;margin-top:5px}
+  .btn-submit-disabled,[disabled].glow{opacity:.85;cursor:not-allowed}
+  .btn-spinner{
+    width:16px;height:16px;border-radius:50%;
+    border:2.5px solid rgba(15,13,11,.35);
+    border-top-color:#0f0d0b;
+    display:none;
+    animation:nv-spin .7s linear infinite;
+  }
+  #submit-btn.loading .btn-spinner{display:inline-block}
+  #submit-btn.loading .btn-label{opacity:.85}
+  #submit-btn[disabled]{opacity:.85;cursor:not-allowed}
+  @keyframes nv-spin{to{transform:rotate(360deg)}}
+  .form-status{min-height:1.4em;margin:14px 0 0;font-weight:600;font-size:.85rem}
+  .form-status.success{color:#22c55e}
+  .form-status.error{color:#ef4444}
+  @media (prefers-reduced-motion: reduce){
+    .btn-spinner{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -62,7 +86,7 @@
 <header class="sticky top-0 z-50 border-b border-border/60 bg-bg/80 backdrop-blur-xl">
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
     <a href="#top" class="flex items-center gap-2">
-      <img src="asset/logo-small.png" alt="NutriVend" class="h-11 w-11 rounded-full object-contain border border-brand/20 bg-neutral-950 p-0.5" />
+      <img src="asset/logo-small.png" alt="NutriVend" width="240" height="240" class="h-11 w-11 rounded-full object-contain border border-brand/20 bg-neutral-950 p-0.5" />
       <span class="font-logo text-2xl font-bold italic tracking-wide text-stone-100">NUTRI<span class="bg-gradient-to-r from-brand to-yellow-500 bg-clip-text text-transparent">VEND</span></span>
     </a>
     <nav class="hidden md:flex items-center gap-8">
@@ -71,19 +95,20 @@
       <a href="#survey"   class="text-sm font-medium text-muted hover:text-brand transition-colors">Survey</a>
       <a href="#about"    class="text-sm font-medium text-muted hover:text-brand transition-colors">About</a>
       <a href="#contact"  class="text-sm font-medium text-muted hover:text-brand transition-colors">Contact</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXVzQUO6Qaec3WBdCie_O3imtUbNailqxEm5vAL1KtV8KoYA/viewform" target="_blank" rel="noreferrer" class="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-bg hover:brightness-110 transition">Take Survey</a>
+      <a href="#book-appointment" class="rounded-md bg-brand px-4 py-2 text-sm font-semibold text-bg hover:brightness-110 transition">Book Appointment</a>
     </nav>
-    <button id="menuBtn" class="md:hidden" aria-label="Menu">
+    <button id="menuBtn" class="grid h-11 w-11 shrink-0 place-items-center rounded-md md:hidden" aria-label="Menu">
       <svg class="icon text-2xl" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
   <div id="mobileMenu" class="hidden md:hidden border-t border-border bg-bg">
     <div class="flex flex-col gap-1 px-4 py-3">
-      <a href="#product"  class="rounded-md px-3 py-2 text-sm hover:bg-surface">Product</a>
-      <a href="#features" class="rounded-md px-3 py-2 text-sm hover:bg-surface">Features</a>
-      <a href="#survey"   class="rounded-md px-3 py-2 text-sm hover:bg-surface">Survey</a>
-      <a href="#about"    class="rounded-md px-3 py-2 text-sm hover:bg-surface">About</a>
-      <a href="#contact"  class="rounded-md px-3 py-2 text-sm hover:bg-surface">Contact</a>
+      <a href="#product"  class="rounded-md px-3 py-3 text-sm hover:bg-surface">Product</a>
+      <a href="#features" class="rounded-md px-3 py-3 text-sm hover:bg-surface">Features</a>
+      <a href="#survey"   class="rounded-md px-3 py-3 text-sm hover:bg-surface">Survey</a>
+      <a href="#about"    class="rounded-md px-3 py-3 text-sm hover:bg-surface">About</a>
+      <a href="#contact"  class="rounded-md px-3 py-3 text-sm hover:bg-surface">Contact</a>
+      <a href="#book-appointment" class="mt-2 flex items-center justify-center rounded-md bg-brand px-4 py-3 text-sm font-semibold text-bg hover:brightness-110 transition">Book Appointment</a>
     </div>
   </div>
 </header>
@@ -122,7 +147,7 @@
     </div>
     <div class="relative">
       <div class="absolute inset-0 -z-10 blur-3xl" style="background:radial-gradient(circle,rgba(249,115,22,.35),transparent 65%)"></div>
-      <img src="asset/Nutrivend_poster.png" alt="NutriVend protein powder vending machine" class="mx-auto max-h-[520px] w-auto object-contain drop-shadow-[0_24px_48px_rgba(0,0,0,0.35)]" />
+      <img src="asset/Nutrivend_poster.png" alt="NutriVend protein powder vending machine" width="460" height="671" class="mx-auto max-h-[260px] sm:max-h-[340px] md:max-h-[420px] lg:max-h-[520px] w-auto max-w-full object-contain drop-shadow-[0_24px_48px_rgba(0,0,0,0.35)]" />
     </div>
   </div>
 </section>
@@ -176,7 +201,7 @@
   <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-5 md:grid-cols-2 md:items-center lg:px-8">
     <div class="relative order-2 md:order-1">
       <div class="absolute -inset-3 rounded-3xl bg-brand/10 blur-2xl"></div>
-      <img loading="lazy" src="asset/Nutrivend_poster.png" alt="NutriVend machine" class="relative mx-auto max-h-[500px] rounded-2xl object-contain" />
+      <img loading="lazy" src="asset/Nutrivend_poster.png" alt="NutriVend machine" width="460" height="671" class="relative mx-auto max-h-[260px] sm:max-h-[340px] md:max-h-[420px] lg:max-h-[500px] w-auto max-w-full rounded-2xl object-contain" />
     </div>
     <div class="order-1 md:order-2">
       <div class="text-sm font-semibold uppercase tracking-widest text-brand">The Machine</div>
@@ -186,7 +211,7 @@
       <p class="mt-4 text-sm text-muted">
         A high-resolution touchscreen, contactless payments, five precise portion sizes, and pharmaceutical-grade dispensing — all inside a compact, IoT-connected machine.
       </p>
-      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div class="rounded-xl border border-border bg-surface p-4 hover:border-brand transition">
           <div class="flex items-center justify-between">
             <div class="font-display text-base font-bold uppercase">Whey Protein</div>
@@ -270,21 +295,21 @@
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="rounded-2xl border border-brand/40 bg-surface p-4">
           <div class="overflow-hidden rounded-2xl border border-border bg-bg p-2">
-            <img src="asset/tshirt-card.png" alt="Exclusive NutriVend T-Shirt" class="h-32 w-full object-cover" />
+            <img src="asset/tshirt-card.jpg" alt="Exclusive NutriVend T-Shirt" width="900" height="600" class="h-32 w-full object-cover" />
           </div>
           <div class="mt-3 font-display text-lg font-bold uppercase">Exclusive NutriVend T-Shirt</div>
           <p class="mt-2 text-sm text-muted">Premium athletic-fit merch, only for survey winners.</p>
         </div>
         <div class="rounded-2xl border border-brand/40 bg-surface p-4">
           <div class="overflow-hidden rounded-2xl border border-border bg-bg p-2">
-            <img src="asset/membership-card.png" alt="1 Month Free Protein Membership" class="h-32 w-full object-cover" />
+            <img src="asset/membership-card.jpg" alt="1 Month Free Protein Membership" width="900" height="563" class="h-32 w-full object-cover" />
           </div>
           <div class="mt-3 font-display text-lg font-bold uppercase">1 Month Free Protein</div>
           <p class="mt-2 text-sm text-muted">Free protein membership on any NutriVend machine.</p>
         </div>
         <div class="sm:col-span-2 rounded-2xl border border-border bg-gradient-to-br from-brand/10 to-transparent p-4">
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <img src="asset/logo-small.png" alt="" class="h-12 w-12 rounded-full object-contain shrink-0 border border-brand/20 bg-neutral-950 p-0.5" />
+            <img src="asset/logo-small.png" alt="" width="240" height="240" class="h-12 w-12 rounded-full object-contain shrink-0 border border-brand/20 bg-neutral-950 p-0.5" />
             <div>
               <div class="font-display text-sm font-bold uppercase">Membership Pack</div>
               <p class="text-sm text-muted">Combine both prizes — merch + a month of gains.</p>
@@ -314,13 +339,86 @@
       <p class="mt-4 text-sm text-muted">
         NutriVend is a product line from BUILDX Automation — an industrial IoT and embedded systems studio based in Salem, Tamil Nadu. We design and manufacture smart vending solutions, industrial IoT platforms, and custom automation systems for businesses across India.
       </p>
-      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div class="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-3"><span class="text-brand">✓</span><span class="text-xs font-medium">Industrial Automation</span></div>
         <div class="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-3"><span class="text-brand">✓</span><span class="text-xs font-medium">IoT Solutions</span></div>
         <div class="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-3"><span class="text-brand">✓</span><span class="text-xs font-medium">Smart Vending</span></div>
         <div class="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-3"><span class="text-brand">✓</span><span class="text-xs font-medium">Embedded Systems</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ BOOK APPOINTMENT ============ -->
+<section id="book-appointment" class="relative overflow-hidden border-y border-border bg-surface/60 py-16 sm:py-20">
+  <div class="absolute inset-0 opacity-40 radial-survey"></div>
+  <div class="relative mx-auto grid max-w-7xl gap-8 px-4 sm:px-5 md:grid-cols-2 md:items-start lg:px-8">
+
+    <div>
+      <div class="text-[11px] font-semibold uppercase tracking-[0.35em] text-brand">Book Appointment</div>
+      <h2 class="mt-3 font-display text-3xl font-bold uppercase leading-[1.05] sm:text-4xl">
+        Get a <span class="text-gradient-orange">Quotation</span><br>for Your Space
+      </h2>
+      <p class="mt-4 max-w-lg text-sm text-muted">
+        Tell us about your gym, campus or workplace and the machine you're considering. We'll email you the quotation, brochure and full machine specs right away, then continue the conversation with you on WhatsApp.
+      </p>
+      <div class="mt-6 flex flex-col gap-3 text-sm text-muted">
+        <div class="flex items-center gap-2"><svg class="icon text-brand" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> No cost, no obligation</div>
+        <div class="flex items-center gap-2"><svg class="icon text-brand" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Documents sent to your inbox instantly</div>
+        <div class="flex items-center gap-2"><svg class="icon text-brand" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> We follow up on WhatsApp the same day</div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-brand/30 bg-bg p-5 sm:p-6">
+      <form id="appointment-form" novalidate>
+
+        <div class="field">
+          <label for="name" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-muted">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Your full name" class="form-input" required>
+          <span class="field-error" id="error-name"></span>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-muted">WhatsApp Number</label>
+          <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="10-digit mobile number" inputmode="numeric" class="form-input" required>
+          <span class="field-error" id="error-whatsapp"></span>
+        </div>
+
+        <div class="field">
+          <label for="email" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-muted">Email ID</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" class="form-input" required>
+          <span class="field-error" id="error-email"></span>
+        </div>
+
+        <div class="field">
+          <label for="city" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-muted">City</label>
+          <input type="text" id="city" name="city" autocomplete="address-level2" placeholder="Your city" class="form-input" required>
+          <span class="field-error" id="error-city"></span>
+        </div>
+
+        <div class="field">
+          <label for="machine" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-muted">Machine Interested In</label>
+          <select id="machine" name="machine" class="form-input" required>
+            <option value="" disabled selected>Choose an option</option>
+            <option value="NutriVend Machine – Gym Placement">NutriVend Machine – Gym Placement</option>
+            <option value="NutriVend Machine – Campus Placement">NutriVend Machine – Campus Placement</option>
+            <option value="NutriVend Machine – Workplace Placement">NutriVend Machine – Workplace Placement</option>
+            <option value="Distributor / Bulk Inquiry">Distributor / Bulk Inquiry</option>
+            <option value="Not sure yet">Not sure yet — advise me</option>
+          </select>
+          <span class="field-error" id="error-machine"></span>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn-full-mobile group mt-2 flex w-full items-center justify-center gap-2 rounded-md bg-brand px-5 py-3 font-display text-sm font-bold uppercase tracking-wider text-bg hover:brightness-110 transition glow">
+          <span class="btn-label">Submit &amp; Get Quotation</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -337,7 +435,7 @@
       </p>
     </div>
 
-    <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div class="rounded-2xl border border-border bg-bg p-4 hover:border-brand transition">
         <div class="font-display text-sm font-bold uppercase tracking-widest text-brand">Registered Office</div>
         <div class="mt-2 text-sm">BUILDX Automation<br>Periya Pudur, Salem<br>Tamil Nadu – 636007, India</div>
@@ -346,9 +444,9 @@
         <div class="font-display text-sm font-bold uppercase tracking-widest text-brand">Phone</div>
         <div class="mt-2 text-sm">Vetrivel, CSO — Chief Sales Officer<br>+91 93457 28131</div>
       </a>
-      <a href="mailto:hello@buildx.in" class="block rounded-2xl border border-border bg-bg p-4 hover:border-brand transition">
+      <a href="mailto:buildxorg@gmail.com" class="block rounded-2xl border border-border bg-bg p-4 hover:border-brand transition">
         <div class="font-display text-sm font-bold uppercase tracking-widest text-brand">Email</div>
-        <div class="mt-2 text-sm">hello@buildx.in</div>
+        <div class="mt-2 text-sm">buildxorg@gmail.com</div>
       </a>
       <div class="rounded-2xl border border-border bg-bg p-4">
         <div class="font-display text-sm font-bold uppercase tracking-widest text-brand">Support Hours</div>
@@ -368,10 +466,10 @@
 <!-- ============ FOOTER ============ -->
 <footer class="border-t border-border bg-surface">
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-5 lg:px-8">
-    <div class="grid gap-8 md:grid-cols-4">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
       <div class="md:col-span-2">
         <div class="flex items-center gap-3">
-          <img src="asset/logo-small.png" alt="NutriVend" class="h-10 w-10 rounded-full object-contain border border-brand/20 bg-neutral-950 p-0.5" />
+          <img src="asset/logo-small.png" alt="NutriVend" width="240" height="240" class="h-10 w-10 rounded-full object-contain border border-brand/20 bg-neutral-950 p-0.5" />
           <div>
             <div class="font-logo text-xl font-bold italic tracking-wide text-stone-100">NUTRI<span class="bg-gradient-to-r from-brand to-yellow-500 bg-clip-text text-transparent">VEND</span></div>
             <div class="text-[9px] uppercase tracking-[0.2em] text-muted font-sans font-medium">Fuel Your Strength</div>
@@ -400,6 +498,7 @@
           <li><a href="#features" class="hover:text-stone-50">Features</a></li>
           <li><a href="#survey"   class="hover:text-stone-50">Survey & Prizes</a></li>
           <li><a href="#about"    class="hover:text-stone-50">About</a></li>
+          <li><a href="#book-appointment" class="hover:text-stone-50">Book Appointment</a></li>
           <li><a href="#contact"  class="hover:text-stone-50">Contact</a></li>
         </ul>
       </div>
@@ -428,5 +527,8 @@
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
 </script>
 
+<script src="script.js"></script>
+
 </body>
 </html>
+
