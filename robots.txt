@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Specifically invite common AI scrapers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
